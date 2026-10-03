@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Renacer Verde · Dale otra vida a tu papel</title>
+<!-- Vista previa del link: cambia TU-USUARIO y renacer-verde por tu usuario y repo de GitHub -->
+<meta name="description" content="Descubre qué hacer con el papel que ya no usas: ideas creativas paso a paso y cómo reciclarlo bien.">
+<meta property="og:title" content="Renacer Verde · Dale otra vida a tu papel">
+<meta property="og:description" content="Ideas creativas paso a paso para reutilizar y reciclar tu papel.">
+<meta property="og:image" content="https://TU-USUARIO.github.io/renacer-verde/preview.jpg">
+<meta property="og:url" content="https://TU-USUARIO.github.io/renacer-verde/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bosque:#1E4D33; --hoja:#5E9E3F; --brote:#C3E88A; --nutria:#8A6440; --agua:#2F7F9C;
+  --bg:#EEF3E6; --surface:#FFFFFF; --ink:#1B2B21; --muted:#4E5F53; --line:#CFDCC3;
+  --chip:#E3EDD6; --chip-on:#1E4D33; --chip-on-ink:#FFFFFF;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121C16; --surface:#1B2920; --ink:#E5EEDF; --muted:#A9B8AC; --line:#2F4236;
+    --chip:#22342A; --chip-on:#C3E88A; --chip-on-ink:#13241A; --bosque:#9FD07A; --hoja:#8CC46A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121C16; --surface:#1B2920; --ink:#E5EEDF; --muted:#A9B8AC; --line:#2F4236;
+  --chip:#22342A; --chip-on:#C3E88A; --chip-on-ink:#13241A; --bosque:#9FD07A; --hoja:#8CC46A;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.55}
+h1,h2,h3{font-family:"Amatic SC","Chalkboard SE","Comic Sans MS",cursive;font-weight:700;line-height:1;margin:0;color:var(--bosque)}
+img,svg{max-width:100%}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--agua);outline-offset:3px;border-radius:6px}
+
+/* Pestañas */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:2px solid var(--line);display:flex;justify-content:center}
+.tabs-inner{display:flex;width:100%;max-width:720px}
+.tab{flex:1;background:none;border:0;padding:14px 6px 12px;color:var(--muted);font-weight:800;font-size:15px;border-bottom:4px solid transparent;margin-bottom:-2px}
+.tab[aria-selected="true"]{color:var(--bosque);border-bottom-color:var(--hoja)}
+.tab span{display:block;font-size:20px;line-height:1.1}
+
+main{max-width:720px;margin:0 auto;padding:0 20px 56px}
+section[hidden]{display:none}
+
+/* Inicio */
+.hero{text-align:center;padding:36px 0 8px}
+.emblem{width:170px;height:auto;display:block;margin:0 auto 6px}
+.hero h1{font-size:clamp(56px,15vw,84px);letter-spacing:.02em}
+.hero .sub{font-weight:800;letter-spacing:.14em;color:var(--muted);font-size:14px;margin:4px 0 0}
+.hero .slogan{font-family:"Amatic SC",cursive;font-size:clamp(30px,8vw,40px);color:var(--hoja);margin:14px 0 0}
+.torn{display:block;width:100%;height:28px;margin:28px 0 24px}
+.torn path{fill:var(--surface)}
+.intro{background:var(--surface);border-radius:4px 4px 18px 18px;padding:4px 22px 24px;margin-top:-26px}
+.intro p{margin:12px 0}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:18px 0 0;padding:0;list-style:none}
+.why li{border-left:4px solid var(--hoja);padding:2px 0 2px 12px;color:var(--muted)}
+.why b{color:var(--ink);display:block}
+.cta{display:inline-block;margin-top:22px;background:var(--bosque);color:var(--bg);border:0;border-radius:999px;padding:14px 28px;font-weight:800;font-size:17px}
+
+/* Preguntas */
+.q{margin-top:30px}
+.q h2{font-size:40px}
+.q p.hint{color:var(--muted);margin:4px 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:var(--chip);color:var(--ink);border:2px solid transparent;border-radius:14px;padding:10px 14px;font-weight:600;display:flex;align-items:center;gap:8px;text-align:left}
+.chip .ic{font-size:22px}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-ink)}
+.chip:disabled{opacity:.4;cursor:not-allowed}
+.empty{color:var(--muted);font-style:italic}
+.go{margin-top:26px;width:100%;background:var(--hoja);color:#fff;border:0;border-radius:14px;padding:16px;font-weight:800;font-size:18px}
+.go:disabled{background:var(--line);color:var(--muted);cursor:not-allowed}
+
+/* Infografía */
+.info-head{padding:30px 0 10px;text-align:center}
+.info-head .big{font-size:76px;line-height:1}
+.info-head h2{font-size:clamp(46px,12vw,64px)}
+.info-head p{color:var(--muted);margin:6px 0 0}
+.facts{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.fact{background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:600;font-size:15px}
+.box{background:var(--surface);border-radius:18px;padding:18px 20px;margin-top:22px}
+.box h3{font-size:32px;margin-bottom:8px}
+.mats{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.mats li{background:var(--chip);border-radius:10px;padding:6px 12px;font-size:15px}
+.steps{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:18px}
+.step{background:var(--surface);border-radius:18px;overflow:hidden}
+.ill{background:#EEF6E2;display:block;width:100%;height:auto;aspect-ratio:200/120}
+.step-body{padding:14px 18px 18px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start}
+.num{grid-row:span 2;width:38px;height:38px;border-radius:50%;background:var(--hoja);color:#fff;font-weight:800;display:grid;place-items:center;font-size:18px}
+.step-body b{font-size:18px;line-height:1.3;padding-top:6px}
+.step-body p{margin:0;color:var(--muted);font-size:16px}
+.ill .slide{animation:slide 2.4s ease-in-out infinite alternate}
+.ill .slide-s{animation:slides 2s ease-in-out infinite alternate}
+.ill .fall{animation:fall 1.8s ease-in infinite}
+.ill .fall2{animation:fall 1.8s ease-in .6s infinite}
+.ill .fall3{animation:fall 1.8s ease-in 1.2s infinite}
+.ill .bob{animation:bob 2.2s ease-in-out infinite alternate}
+.ill .spin{transform-box:fill-box;transform-origin:center;animation:spin 5s linear infinite}
+.ill .spinf{transform-box:fill-box;transform-origin:center;animation:spin 1.2s linear infinite}
+.ill .press{animation:press 1.6s ease-in-out infinite}
+.ill .grow{transform-box:fill-box;transform-origin:50% 100%;animation:grow 3s ease-out infinite}
+.ill .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.4s ease-in-out infinite}
+.ill .lift{animation:lift 2.6s ease-in-out infinite}
+.ill .drive{animation:drive 4s linear infinite}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(64px)}}
+@keyframes slides{from{transform:translateX(0)}to{transform:translateX(30px)}}
+@keyframes fall{0%{transform:translateY(-16px);opacity:0}20%{opacity:1}100%{transform:translateY(24px);opacity:0}}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes press{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes grow{0%{transform:scaleY(.1);opacity:.3}60%,100%{transform:scaleY(1);opacity:1}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@keyframes lift{0%,100%{transform:translateY(14px)}50%{transform:translateY(-10px)}}
+@keyframes drive{from{transform:translateX(-120px)}to{transform:translateX(220px)}}
+@media (prefers-reduced-motion:reduce){.ill *{animation:none!important}}
+.tip{border:2px dashed var(--nutria);background:transparent}
+.tip h3{color:var(--nutria)}
+.again{margin-top:24px;width:100%;background:transparent;border:2px solid var(--bosque);color:var(--bosque);border-radius:14px;padding:14px;font-weight:800}
+.placeholder{text-align:center;padding:60px 10px;color:var(--muted)}
+.placeholder .big{font-size:64px}
+footer{text-align:center;color:var(--muted);font-size:14px;padding:10px 20px 30px}
+@media (prefers-reduced-motion:no-preference){
+  section:not([hidden]){animation:in .35s ease-out}
+  @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<nav class="tabs" role="tablist" aria-label="Secciones">
+  <div class="tabs-inner">
+    <button class="tab" role="tab" id="t-inicio" aria-controls="inicio" aria-selected="true"><span>🌱</span>Inicio</button>
+    <button class="tab" role="tab" id="t-papel" aria-controls="papel" aria-selected="false"><span>📄</span>Tu papel</button>
+    <button class="tab" role="tab" id="t-pasos" aria-controls="pasos" aria-selected="false"><span>🪜</span>Paso a paso</button>
+  </div>
+</nav>
+
+<main>
+  <!-- PESTAÑA 1 -->
+  <section id="inicio" role="tabpanel" aria-labelledby="t-inicio">
+    <div class="hero">
+      <!-- Emblema provisional: reemplazar por el logo real (en WebP) -->
+      <svg class="emblem" viewBox="0 0 200 200" role="img" aria-label="Logo de Renacer Verde">
+        <path d="M100 70 V40" stroke="#1E4D33" stroke-width="5" stroke-linecap="round"/>
+        <path d="M100 42 C84 30 70 34 64 46 C78 52 92 50 100 42Z" fill="#6BAA4A" stroke="#1E4D33" stroke-width="3"/>
+        <path d="M100 42 C116 30 130 34 136 46 C122 52 108 50 100 42Z" fill="#6BAA4A" stroke="#1E4D33" stroke-width="3"/>
+        <path d="M100 40 C94 26 96 14 100 8 C104 14 106 26 100 40Z" fill="#6BAA4A" stroke="#1E4D33" stroke-width="3"/>
+        <path d="M100 186 C58 156 30 132 30 104 C30 84 46 72 63 72 C80 72 92 82 100 94 C108 82 120 72 137 72 C154 72 170 84 170 104 C170 132 142 156 100 186Z" fill="#3E8DA8" stroke="#1E4D33" stroke-width="5"/>
+        <path d="M52 100 C60 88 76 92 74 104 C72 116 58 120 54 132 C46 124 46 108 52 100Z" fill="#6BAA4A"/>
+        <path d="M118 96 C132 88 152 96 150 112 C148 126 132 128 126 142 C116 134 110 120 112 110 C113 104 114 100 118 96Z" fill="#6BAA4A"/>
+        <path d="M86 140 C94 136 104 140 102 150 C100 158 92 160 88 166 C82 158 80 146 86 140Z" fill="#6BAA4A"/>
+      </svg>
+      <h1>Renacer Verde</h1>
+      <p class="sub">SOLUCIONES ECOLÓGICAS</p>
+      <p class="slogan">Creciendo junto a la naturaleza</p>
+    </div>
+
+    <svg class="torn" viewBox="0 0 400 28" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 28 L0 14 L14 8 L26 16 L40 6 L55 14 L68 4 L82 13 L97 7 L110 17 L124 6 L139 12 L152 3 L166 14 L180 8 L194 16 L207 5 L222 13 L236 6 L249 15 L263 4 L278 12 L292 7 L305 16 L319 5 L334 13 L348 8 L361 15 L375 4 L388 12 L400 7 L400 28Z"/>
+    </svg>
+    <div class="intro">
+      <p><b>Bienvenido a Renacer Verde.</b> Aquí te ayudamos a decidir qué hacer con el papel que ya no usas en tu casa, colegio o empresa: convertirlo en algo útil o llevarlo a reciclar de la forma correcta.</p>
+      <ul class="why">
+        <li><b>1. Cuéntanos qué papel tienes</b>Periódico, hojas, cartón, revistas…</li>
+        <li><b>2. Elige qué quieres hacer</b>Una maceta, una figura, una libreta…</li>
+        <li><b>3. Sigue la infografía</b>Te mostramos el paso a paso.</li>
+      </ul>
+      <button class="cta" data-go="papel">Empezar</button>
+    </div>
+  </section>
+
+  <!-- PESTAÑA 2 -->
+  <section id="papel" role="tabpanel" aria-labelledby="t-papel" hidden>
+    <div class="q">
+      <h2>¿Qué tipo de papel tienes?</h2>
+      <p class="hint">Elige uno.</p>
+      <div class="chips" id="paperChips"></div>
+    </div>
+    <div class="q">
+      <h2>¿Qué te gustaría hacer con él?</h2>
+      <p class="hint" id="projHint">Primero elige el tipo de papel.</p>
+      <div class="chips" id="projChips"></div>
+    </div>
+    <button class="go" id="goBtn" disabled>Ver paso a paso</button>
+  </section>
+
+  <!-- PESTAÑA 3 -->
+  <section id="pasos" role="tabpanel" aria-labelledby="t-pasos" hidden>
+    <div id="infografia">
+      <div class="placeholder"><div class="big">🦦</div><p>Aún no has elegido un proyecto.<br>Ve a <b>Tu papel</b> y cuéntanos qué tienes.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>Renacer Verde · Soluciones ecológicas</footer>
+
+<script>
+const PAPELES = [
+  {id:"periodico", ic:"📰", nombre:"Periódico"},
+  {id:"hojas", ic:"📄", nombre:"Hojas de cuaderno o impresión"},
+  {id:"carton", ic:"📦", nombre:"Cartón"},
+  {id:"revistas", ic:"📖", nombre:"Revistas o folletos"},
+  {id:"regalo", ic:"🎁", nombre:"Papel de regalo o kraft"}
+];
+
+const PROYECTOS = {
+  maceta:{ic:"🪴", nombre:"Maceta biodegradable", papeles:["periodico","carton"], tiempo:"20 min", nivel:"Fácil",
+    desc:"Semilleros que se siembran directo en la tierra: el papel se descompone solo.",
+    mats:["Periódico o tubos de cartón","Un vaso o lata como molde","Tierra","Semillas"],
+    pasos:[
+      ["✂️","Corta el papel","Corta tiras de periódico de unos 10 cm de ancho, o tubos de cartón por la mitad."],
+      ["🥫","Enróllalo en el molde","Enrolla el papel alrededor del vaso dejando unos 4 cm sobrantes abajo."],
+      ["👇","Dobla la base","Dobla el sobrante hacia adentro y presiona para formar el fondo."],
+      ["🌍","Llénala de tierra","Saca el molde con cuidado y llena la maceta con tierra húmeda."],
+      ["🌱","Siembra","Pon 2 o 3 semillas, riega y ubícala donde le dé luz."],
+      ["🏡","Trasplanta entera","Cuando la planta crezca, siémbrala con todo y maceta."]],
+    tip:"No uses papel brillante ni con mucha tinta de color: el periódico normal se descompone mejor."},
+  ballena:{ic:"🐋", nombre:"Ballena de papel maché", papeles:["periodico","hojas","revistas"], tiempo:"2 días (con secado)", nivel:"Medio",
+    desc:"Una figura decorativa hecha con tiras de papel y engrudo casero.",
+    mats:["Periódico u hojas en tiras","Un globo","Harina y agua (engrudo)","Pintura azul y blanca","Pincel"],
+    pasos:[
+      ["🥣","Prepara el engrudo","Mezcla 1 parte de harina con 2 de agua hasta que quede como crema espesa."],
+      ["🎈","Infla el globo","Ese será el cuerpo de la ballena. Hazlo alargado si puedes."],
+      ["📰","Pega las tiras","Moja cada tira en engrudo y cúbrelo todo. Haz 3 o 4 capas."],
+      ["🐳","Forma la cola","Con papel arrugado y cinta haz la cola y las aletas, y cúbrelas con más tiras."],
+      ["☀️","Deja secar","Espera 24 horas o hasta que esté duro. Luego revienta el globo."],
+      ["🎨","Píntala","Azul para el cuerpo, blanco para la panza y los ojos."]],
+    tip:"Entre más capas delgadas, más resistente queda. Deja secar cada día antes de seguir."},
+  artesanal:{ic:"🧻", nombre:"Papel reciclado artesanal", papeles:["hojas","periodico"], tiempo:"1 día (con secado)", nivel:"Medio",
+    desc:"Hojas nuevas hechas a mano para tarjetas, invitaciones o manualidades.",
+    mats:["Hojas usadas","Agua","Licuadora","Bastidor o malla","Trapos o toallas"],
+    pasos:[
+      ["✂️","Pica el papel","Rompe las hojas en pedacitos pequeños."],
+      ["💧","Remójalo","Déjalo en agua unas horas para que se ablande."],
+      ["🌀","Licúalo","Licúa con bastante agua hasta formar una pulpa."],
+      ["🪟","Saca la hoja","Mete el bastidor en la pulpa y levántalo parejo para formar una capa."],
+      ["🧽","Escúrrelo","Pásalo sobre un trapo y presiona con una esponja para sacar el agua."],
+      ["☀️","Seca","Deja secar al sol o colgado. Despega con cuidado."]],
+    tip:"Agrega pétalos o semillas a la pulpa y tendrás papel decorado o hasta sembrable."},
+  libreta:{ic:"📒", nombre:"Libreta de reuso", papeles:["hojas"], tiempo:"30 min", nivel:"Fácil",
+    desc:"Aprovecha las hojas impresas por un solo lado para notas y borradores.",
+    mats:["Hojas usadas por una cara","Cartón para la tapa","Perforadora o aguja","Cuerda o lana"],
+    pasos:[
+      ["🔍","Selecciona","Separa las hojas que tengan una cara limpia."],
+      ["📐","Ordena","Ponlas con el lado limpio hacia arriba y dóblalas o córtalas al mismo tamaño."],
+      ["📦","Haz la tapa","Corta dos cartones del mismo tamaño para adelante y atrás."],
+      ["🕳️","Perfora","Haz 2 o 3 huecos en el borde de todo el bloque."],
+      ["🧵","Amarra","Pasa la cuerda por los huecos y haz un nudo firme."],
+      ["✏️","Decora","Dibuja o pega recortes en la tapa."]],
+    tip:"Ideal para empresas: una caja de hojas de reuso junto a la impresora ahorra mucho papel nuevo."},
+  origami:{ic:"🦢", nombre:"Figuras de origami", papeles:["revistas","regalo","hojas"], tiempo:"15 min", nivel:"Fácil",
+    desc:"Figuras dobladas para decorar, regalar o enseñar a los niños.",
+    mats:["Hojas de revista o papel de regalo","Tijeras","Regla"],
+    pasos:[
+      ["✂️","Haz un cuadrado","Dobla una esquina hasta el borde opuesto y corta lo que sobra."],
+      ["↘️","Marca las diagonales","Dobla en diagonal en ambos sentidos y desdobla."],
+      ["🔺","Forma la base","Dobla hacia adentro siguiendo las marcas para hacer un triángulo."],
+      ["🦢","Da forma","Sigue los dobleces de la figura que elijas (grulla, barco, corazón)."],
+      ["👐","Ajusta","Abre alas o puntas con cuidado para que quede firme."]],
+    tip:"Las páginas de revista tienen colores muy bonitos y no necesitas pintar nada."},
+  organizador:{ic:"🗂️", nombre:"Organizador de escritorio", papeles:["carton"], tiempo:"40 min", nivel:"Fácil",
+    desc:"Lapiceros y cajones para ordenar la oficina o el cuarto.",
+    mats:["Cajas y tubos de cartón","Tijeras","Pegante","Papel de regalo o revistas para forrar"],
+    pasos:[
+      ["📏","Mide y corta","Corta los tubos y cajas en diferentes alturas."],
+      ["🧩","Organiza","Acomódalos sobre una base de cartón como quieras."],
+      ["🫙","Pega","Pega cada pieza a la base y entre sí."],
+      ["🎁","Forra","Cubre con papel de regalo o revistas para que se vea bonito."],
+      ["🖊️","Úsalo","Guarda lápices, clips y notas."]],
+    tip:"Usa cajas de cereal: son delgadas, fáciles de cortar y resistentes."},
+  bolsa:{ic:"🛍️", nombre:"Bolsa de regalo", papeles:["regalo","periodico","revistas"], tiempo:"20 min", nivel:"Fácil",
+    desc:"Bolsas para empacar detalles sin comprar papel nuevo.",
+    mats:["Una hoja grande","Pegante","Cuerda o lana","Perforadora"],
+    pasos:[
+      ["📐","Dobla los lados","Dobla la hoja en tres a lo largo y pega los bordes para formar un tubo."],
+      ["👇","Haz el fondo","Dobla la parte de abajo y pégala para cerrar la base."],
+      ["📦","Marca la forma","Dobla los costados hacia adentro para que quede como bolsa."],
+      ["🕳️","Perfora","Haz dos huecos arriba de cada lado."],
+      ["🧶","Pon las asas","Pasa la cuerda y haz nudos por dentro."]],
+    tip:"Refuerza el fondo con un pedazo de cartón para que aguante más peso."},
+  reciclar:{ic:"♻️", nombre:"Llevarlo a reciclar", papeles:["periodico","hojas","carton","revistas","regalo"], tiempo:"10 min", nivel:"Fácil",
+    desc:"Si no lo vas a reutilizar, sepáralo bien para que sí se pueda aprovechar.",
+    mats:["Una caja o bolsa","Cuerda para amarrar"],
+    pasos:[
+      ["🧹","Que esté limpio","Separa el papel que tenga comida, grasa o esté mojado: ese no se recicla."],
+      ["📎","Quita lo que no es papel","Saca grapas, clips, cinta, espirales y plásticos."],
+      ["📦","Aplana el cartón","Desarma las cajas para que ocupen menos espacio."],
+      ["🗃️","Usa la caneca blanca","El papel y el cartón limpios van en la caneca o bolsa blanca, la de aprovechables."],
+      ["🚛","Entrégalo","Llévalo a un punto de reciclaje o entrégalo a un reciclador de oficio."]],
+    tip:"El papel higiénico, las servilletas usadas y el papel plastificado no se reciclan."}
+};
+
+/* ===== Ilustraciones animadas (SVG) para cada paso ===== */
+const K='#1E4D33', ST=`stroke="${K}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"`;
+const NEWS='#ECE7DA', KRAFT='#C9A26B', BLUE='#3E8DA8', LEAF='#6BAA4A', SOIL='#6B4A2E', YEL='#F2C14E', RED='#D9534F';
+const lines=(x,y,w,n,gap=9)=>{let l='';for(let i=0;i<n;i++)l+=`<line x1="${x}" y1="${y+i*gap}" x2="${x+w}" y2="${y+i*gap}" stroke="#9AA59C" stroke-width="2.5" stroke-linecap="round"/>`;return l};
+const sheet=(x,y,w=50,h=64,f='#fff',n=4)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="${f}" ${ST}/>`+lines(x+8,y+12,w-16,n);
+const scissors=(x,y)=>`<g transform="translate(${x} ${y})"><circle cx="0" cy="-8" r="6" fill="${RED}" ${ST}/><circle cx="0" cy="8" r="6" fill="${RED}" ${ST}/><path d="M5 -5 L30 5 M5 5 L30 -5" fill="none" ${ST}/></g>`;
+const drop=(x,y,c='')=>`<path class="${c}" d="M${x} ${y-7} C${x+6} ${y} ${x+5} ${y+6} ${x} ${y+6} C${x-5} ${y+6} ${x-6} ${y} ${x} ${y-7}Z" fill="${BLUE}" ${ST} stroke-width="2"/>`;
+const pot=(x,y,f=NEWS)=>`<path d="M${x} ${y} L${x+44} ${y} L${x+38} ${y+38} L${x+6} ${y+38}Z" fill="${f}" ${ST}/>`+`<path d="M${x+6} ${y+10} L${x+38} ${y+10} M${x+8} ${y+22} L${x+36} ${y+22}" stroke="#9AA59C" stroke-width="2.5"/>`;
+const sun=(x,y)=>`<g class="spin"><g>${[0,45,90,135,180,225,270,315].map(a=>`<line x1="${x}" y1="${y-17}" x2="${x}" y2="${y-24}" stroke="${YEL}" stroke-width="4" stroke-linecap="round" transform="rotate(${a} ${x} ${y})"/>`).join('')}</g></g><circle cx="${x}" cy="${y}" r="12" fill="${YEL}" ${ST}/>`;
+const whaleBody=(x,y,f=BLUE)=>`<g transform="translate(${x} ${y})"><path d="M0 32 C0 10 30 0 60 2 C90 4 108 16 110 30 C112 44 90 54 60 54 C30 54 6 46 0 32Z" fill="${f}" ${ST}/><path d="M108 28 L130 12 L126 30 L134 44 L110 36Z" fill="${f}" ${ST}/><circle cx="22" cy="26" r="3" fill="${K}"/></g>`;
+const bowl=(x,y,fill='#fff')=>`<path d="M${x} ${y} H${x+70} C${x+68} ${y+28} ${x+50} ${y+36} ${x+35} ${y+36} C${x+20} ${y+36} ${x+2} ${y+28} ${x} ${y}Z" fill="${fill}" ${ST}/>`;
+const tube=(x,y,h,f=KRAFT)=>`<rect x="${x}" y="${y}" width="26" height="${h}" fill="${f}" ${ST}/><ellipse cx="${x+13}" cy="${y}" rx="13" ry="5" fill="#A9814F" ${ST}/>`;
+const bag=(x,y,f=KRAFT)=>`<path d="M${x} ${y} H${x+56} L${x+60} ${y+60} H${x-4}Z" fill="${f}" ${ST}/><path d="M${x+6} ${y} L${x+10} ${y+8} M${x+50} ${y} L${x+46} ${y+8}" ${ST} fill="none"/>`;
+const check=(x,y)=>`<circle cx="${x}" cy="${y}" r="11" fill="${LEAF}" ${ST}/><path d="M${x-5} ${y} l4 4 l7 -8" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+const cross=(x,y)=>`<circle cx="${x}" cy="${y}" r="11" fill="${RED}" ${ST}/><path d="M${x-5} ${y-5} l10 10 M${x+5} ${y-5} l-10 10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`;
+const arrow=(x1,y1,x2,y2)=>`<path d="M${x1} ${y1} L${x2} ${y2}" ${ST} fill="none"/><circle cx="${x2}" cy="${y2}" r="4" fill="${K}"/>`;
+const punch=(x,y)=>`<g transform="translate(${x} ${y})"><rect x="0" y="16" width="44" height="14" rx="3" fill="#8A9A8E" ${ST}/><rect x="6" y="0" width="32" height="10" rx="3" fill="#B7C4BA" ${ST}/><path d="M14 10 V16 M30 10 V16" ${ST}/></g>`;
+const crane=(x,y,f)=>`<g transform="translate(${x} ${y})"><path d="M0 40 L36 30 L50 0 L58 30 L96 8 L78 40 L100 46 L50 52Z" fill="${f}" ${ST}/><path d="M50 52 L58 30 M36 30 L50 52" ${ST} fill="none"/></g>`;
+const ground='<path d="M8 108 H192" '+ST+'/>';
+
+const ILL={
+  // Maceta
+  cut: sheet(40,26,120,70,NEWS,5)+`<path d="M40 61 H160" stroke="${RED}" stroke-width="3" stroke-dasharray="6 6"/><g class="slide">${scissors(40,61)}</g>`,
+  roll: `<path d="M74 30 H126 L120 96 H80Z" fill="#DCE6EE" ${ST}/>`+`<g class="bob"><path d="M70 50 H130 V100 H70Z" fill="${NEWS}" ${ST}/>${lines(78,62,44,3,10)}</g><path d="M140 40 C160 55 160 85 140 100" fill="none" ${ST}/><path d="M140 100 l2 -10 M140 100 l9 -4" ${ST}/>`,
+  fold: pot(78,40)+`<g class="pulse">${arrow(46,92,82,80)}${arrow(154,92,118,80)}</g>`+ground,
+  soil: pot(78,58)+`<ellipse cx="100" cy="58" rx="22" ry="5" fill="${SOIL}" ${ST}/>`+`<g class="fall"><circle cx="94" cy="30" r="4" fill="${SOIL}"/><circle cx="106" cy="24" r="3" fill="${SOIL}"/></g><g class="fall2"><circle cx="100" cy="28" r="4" fill="${SOIL}"/></g><path d="M118 8 L104 20 L112 28 L126 16Z" fill="#9AA59C" ${ST}/>`,
+  seed: pot(78,58)+`<ellipse cx="100" cy="58" rx="22" ry="5" fill="${SOIL}" ${ST}/><g class="fall"><ellipse cx="96" cy="34" rx="3" ry="4" fill="${KRAFT}" ${ST} stroke-width="1.5"/></g><g class="fall2"><ellipse cx="106" cy="30" rx="3" ry="4" fill="${KRAFT}" ${ST} stroke-width="1.5"/></g>`+`<g class="fall3">${drop(132,34)}</g><path d="M130 14 h24 l6 8 h-30z" fill="${BLUE}" ${ST}/>`,
+  plant: ground+`<path d="M78 108 L82 84 H118 L122 108" fill="${NEWS}" ${ST}/><g class="grow"><path d="M100 84 V44" ${ST} stroke-width="4"/><path d="M100 60 C86 48 74 52 70 62 C82 68 94 66 100 60Z" fill="${LEAF}" ${ST}/><path d="M100 52 C114 40 126 44 130 54 C118 60 106 58 100 52Z" fill="${LEAF}" ${ST}/></g>${sun(162,28)}`,
+  // Ballena
+  bowl: bowl(64,58)+`<ellipse cx="99" cy="58" rx="35" ry="6" fill="#F6F1E4" ${ST}/><g class="spin"><path d="M99 58 L120 20" ${ST} stroke-width="5"/></g><rect x="12" y="40" width="46" height="50" rx="4" fill="#fff" ${ST}/><text x="35" y="70" font-size="11" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" fill="${K}">harina</text>`,
+  balloon: `<g class="bob"><ellipse cx="100" cy="52" rx="52" ry="30" fill="#A9D3E3" ${ST}/><path d="M152 52 l8 -4 v8z" fill="#A9D3E3" ${ST}/><path d="M160 52 C172 62 166 80 178 92" fill="none" ${ST} stroke-width="2"/></g>`,
+  strips: `<ellipse cx="100" cy="64" rx="52" ry="30" fill="#A9D3E3" ${ST}/>`+[0,1,2,3,4].map(i=>`<rect x="${58+i*16}" y="40" width="12" height="48" fill="${NEWS}" stroke="#9AA59C" stroke-width="2" transform="rotate(${i%2?8:-6} ${64+i*16} 64)"/>`).join('')+`<g class="fall"><rect x="140" y="14" width="12" height="34" fill="${NEWS}" ${ST} stroke-width="2"/></g>`,
+  whale: `<g class="bob">${whaleBody(34,30,NEWS)}</g><path d="M152 40 l10 -12 M162 46 l14 -4" ${ST}/>`,
+  dry: `<g>${whaleBody(30,46,NEWS)}</g>${sun(160,28)}`,
+  paint: `${whaleBody(30,34,BLUE)}<path d="M38 72 C60 82 110 84 136 70" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/><g class="slide-s"><g transform="translate(120 10) rotate(30)"><rect x="0" y="0" width="8" height="34" rx="3" fill="${KRAFT}" ${ST}/><path d="M-2 34 h12 l-2 14 h-8z" fill="${BLUE}" ${ST}/></g></g>`,
+  // Papel artesanal
+  tear: sheet(40,30,50,64)+`<g class="fall"><rect x="110" y="40" width="16" height="14" fill="#fff" ${ST} transform="rotate(20 118 47)"/></g><g class="fall2"><rect x="140" y="30" width="14" height="12" fill="#fff" ${ST} transform="rotate(-15 147 36)"/></g><g class="fall3"><rect x="124" y="60" width="14" height="16" fill="#fff" ${ST}/></g>`,
+  soak: bowl(55,54,'#DCEFF6')+`<ellipse cx="90" cy="54" rx="35" ry="6" fill="#A9D3E3" ${ST}/><g class="bob"><rect x="70" y="42" width="14" height="12" fill="#fff" ${ST}/><rect x="96" y="40" width="14" height="12" fill="#fff" ${ST}/></g>${drop(150,40,'')}<text x="150" y="80" font-size="22" text-anchor="middle">⏳</text>`,
+  blender: `<path d="M74 16 H126 L118 84 H82Z" fill="#DCEFF6" ${ST}/><rect x="70" y="84" width="60" height="26" rx="5" fill="#8A9A8E" ${ST}/><circle cx="100" cy="97" r="5" fill="${RED}"/><g class="spinf"><path d="M100 60 C88 48 112 40 100 30 M100 60 C114 62 108 78 96 72" fill="none" stroke="#9AA59C" stroke-width="4" stroke-linecap="round"/></g>`,
+  frame: `<path d="M30 70 H170 L162 108 H38Z" fill="#DCEFF6" ${ST}/><path d="M30 70 H170" stroke="#9AA59C" stroke-width="3"/><g class="lift"><rect x="62" y="40" width="76" height="40" fill="#fff" ${ST} stroke-width="5"/><path d="M62 52 H138 M62 64 H138 M82 40 V80 M100 40 V80 M118 40 V80" stroke="#B7C4BA" stroke-width="1.5"/></g>`,
+  sponge: `<rect x="34" y="78" width="132" height="22" rx="4" fill="#F2D6C4" ${ST}/><rect x="54" y="68" width="92" height="12" fill="#F6F1E4" ${ST}/><g class="press"><rect x="78" y="30" width="44" height="24" rx="6" fill="${YEL}" ${ST}/></g>${drop(64,104,'fall')}${drop(140,104,'fall2')}`,
+  drysheet: `<path d="M20 30 H180" ${ST}/><rect x="40" y="30" width="50" height="58" fill="#F6F1E4" ${ST}/><rect x="104" y="30" width="50" height="58" fill="#F6F1E4" ${ST}/><path d="M50 26 v10 M80 26 v10 M114 26 v10 M144 26 v10" stroke="${RED}" stroke-width="4" stroke-linecap="round"/>${sun(176,90)}`,
+  // Libreta
+  select: sheet(40,24,52,70)+check(92,24)+`<rect x="108" y="24" width="52" height="70" rx="3" fill="#fff" ${ST}/>`+cross(160,24)+lines(116,36,36,5),
+  stack: [0,1,2,3].map(i=>`<rect x="${60-i*3}" y="${30+i*4}" width="80" height="60" rx="3" fill="#fff" ${ST}/>`).join('')+`<g class="slide-s"><rect x="30" y="98" width="110" height="12" fill="${YEL}" ${ST}/></g>`,
+  covers: `<rect x="36" y="26" width="56" height="74" rx="4" fill="${KRAFT}" ${ST}/><rect x="108" y="26" width="56" height="74" rx="4" fill="${KRAFT}" ${ST}/><g class="slide-s">${scissors(70,16)}</g>`,
+  punch: `<rect x="40" y="62" width="120" height="40" rx="3" fill="${KRAFT}" ${ST}/><circle cx="60" cy="74" r="4" fill="${K}"/><circle cx="60" cy="90" r="4" fill="${K}"/><g class="press">${punch(38,12)}</g>`,
+  tie: `<rect x="50" y="24" width="100" height="76" rx="4" fill="${KRAFT}" ${ST}/><circle cx="64" cy="42" r="4" fill="${K}"/><circle cx="64" cy="82" r="4" fill="${K}"/><path d="M64 42 C40 50 40 74 64 82" fill="none" stroke="${RED}" stroke-width="3"/><g class="pulse"><path d="M64 62 C50 50 42 60 52 66 C42 72 50 80 64 66" fill="none" stroke="${RED}" stroke-width="3"/></g>`,
+  decorate: `<rect x="50" y="20" width="100" height="80" rx="4" fill="${KRAFT}" ${ST}/><path d="M100 76 V50" ${ST}/><path d="M100 56 C88 44 76 50 76 58 C86 64 96 62 100 56Z M100 50 C112 40 124 44 124 52 C114 58 104 56 100 50Z" fill="${LEAF}" ${ST}/><g class="slide-s"><g transform="translate(118 30) rotate(40)"><rect x="0" y="0" width="8" height="44" fill="${YEL}" ${ST}/><path d="M0 44 h8 l-4 9z" fill="${K}"/></g></g>`,
+  // Origami
+  square: `<rect x="50" y="20" width="100" height="80" fill="#F28C8C" ${ST}/><path d="M50 100 L130 20" stroke="#fff" stroke-width="2" stroke-dasharray="5 5"/><path d="M130 20 V100" stroke="${RED}" stroke-width="3" stroke-dasharray="6 6"/><g class="lift">${scissors(124,60)}</g>`,
+  diag: `<rect x="60" y="20" width="80" height="80" fill="#F28C8C" ${ST}/><g class="pulse"><path d="M60 20 L140 100 M140 20 L60 100" stroke="#fff" stroke-width="3" stroke-dasharray="6 5"/></g>`,
+  triangle: `<path d="M50 96 L100 22 L150 96Z" fill="#F28C8C" ${ST}/><path d="M100 22 V96 M75 59 L100 96 L125 59" stroke="#fff" stroke-width="2.5" stroke-dasharray="5 5" fill="none"/>`,
+  crane: `<g class="bob">${crane(50,30,'#F28C8C')}</g>`,
+  crane2: `<g class="bob">${crane(18,34,'#F28C8C')}</g><g class="bob" style="animation-delay:.8s">${crane(104,24,'#7FC4D8')}</g>`,
+  // Organizador
+  measure: `${tube(50,40,60)}${tube(90,30,70)}<rect x="130" y="20" width="12" height="88" fill="${YEL}" ${ST}/><g class="slide-s">${scissors(20,60)}</g>`,
+  arrange: `<rect x="34" y="96" width="132" height="12" fill="${KRAFT}" ${ST}/>${tube(46,56,40)}<g class="bob">${tube(86,40,56)}</g>${tube(126,66,30)}`,
+  glue: `<rect x="34" y="96" width="132" height="12" fill="${KRAFT}" ${ST}/>${tube(60,56,40)}${tube(100,46,50)}<path d="M150 20 h20 v30 h-20z" fill="#fff" ${ST}/><path d="M156 20 l4 -10 l4 10" fill="${RED}" ${ST}/>${drop(146,66,'fall')}`,
+  wrap: `<rect x="34" y="96" width="132" height="12" fill="${KRAFT}" ${ST}/><rect x="60" y="56" width="26" height="40" fill="#F28C8C" ${ST}/><rect x="100" y="46" width="26" height="50" fill="#7FC4D8" ${ST}/><path d="M60 66 H86 M60 76 H86 M60 86 H86 M100 58 H126 M100 70 H126 M100 82 H126" stroke="#fff" stroke-width="3"/><g class="pulse"><text x="160" y="50" font-size="22" text-anchor="middle">✨</text></g>`,
+  organizer: `<rect x="34" y="96" width="132" height="12" fill="${KRAFT}" ${ST}/><g class="bob"><path d="M66 60 l-6 -40 M74 60 l4 -44" stroke="${YEL}" stroke-width="6" stroke-linecap="round"/><path d="M114 50 l-2 -34" stroke="${BLUE}" stroke-width="6" stroke-linecap="round"/></g><rect x="56" y="56" width="26" height="40" fill="#F28C8C" ${ST}/><rect x="100" y="46" width="26" height="50" fill="#7FC4D8" ${ST}/>`,
+  // Bolsa
+  foldsheet: `<rect x="50" y="18" width="100" height="86" fill="${KRAFT}" ${ST}/><path d="M83 18 V104 M117 18 V104" stroke="#fff" stroke-width="2.5" stroke-dasharray="6 5"/><g class="pulse">${arrow(36,62,64,62)}${arrow(164,62,136,62)}</g>`,
+  bagbottom: `<rect x="70" y="14" width="60" height="70" fill="${KRAFT}" ${ST}/><g class="lift"><path d="M70 84 H130 L120 100 H80Z" fill="#A9814F" ${ST}/></g>`,
+  bag: `<g class="bob">${bag(72,36)}</g>`,
+  bagholes: bag(72,40)+`<circle cx="88" cy="52" r="3.5" fill="${K}"/><circle cx="112" cy="52" r="3.5" fill="${K}"/><g class="press">${punch(140,10)}</g>`,
+  baghandle: `<g class="bob">${bag(72,44,'#F28C8C')}<path d="M88 56 C88 24 112 24 112 56" fill="none" stroke="${K}" stroke-width="4"/><circle cx="88" cy="56" r="3.5" fill="${K}"/><circle cx="112" cy="56" r="3.5" fill="${K}"/></g>`,
+  // Reciclar
+  clean: sheet(30,30,50,64)+check(80,30)+`<rect x="116" y="30" width="54" height="64" rx="3" fill="${KRAFT}" ${ST}/><ellipse cx="136" cy="56" rx="10" ry="7" fill="#7A5A2F" opacity=".6"/><ellipse cx="154" cy="76" rx="7" ry="5" fill="#7A5A2F" opacity=".6"/>`+cross(170,30),
+  staples: sheet(60,26,70,80)+`<g class="slide-s"><path d="M70 30 h16" stroke="#8A9A8E" stroke-width="4" stroke-linecap="round"/><path d="M112 22 v14 a5 5 0 0 0 10 0 v-12" fill="none" stroke="#8A9A8E" stroke-width="3"/></g>`,
+  flatten: `<path d="M30 60 l20 -12 h34 l-20 12z M30 60 v34 h34 v-34 M64 60 l20 -12 v34 l-20 12" fill="${KRAFT}" ${ST}/>${arrow(96,72,118,72)}<g class="press"><rect x="128" y="80" width="56" height="14" fill="${KRAFT}" ${ST}/></g>`,
+  sort: [['#fff','Blanca',40],['#2B2B2B','Negra',88],['#4F9A3A','Verde',136]].map(([c,t,x])=>`<rect x="${x}" y="40" width="34" height="58" rx="3" fill="${c}" ${ST}/><rect x="${x-3}" y="32" width="40" height="10" rx="3" fill="${c}" ${ST}/><text x="${x+17}" y="112" font-size="11" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" fill="${K}">${t}</text>`).join('')+`<g class="fall"><rect x="50" y="6" width="14" height="18" fill="#fff" ${ST} stroke-width="2"/></g>`+check(74,56),
+  truck: ground+`<g class="drive"><rect x="20" y="52" width="70" height="40" rx="4" fill="${LEAF}" ${ST}/><path d="M90 64 h22 l12 14 v14 h-34z" fill="#fff" ${ST}/><circle cx="40" cy="96" r="9" fill="#555" ${ST}/><circle cx="104" cy="96" r="9" fill="#555" ${ST}/><text x="55" y="80" font-size="22" text-anchor="middle" fill="#fff">♻</text></g>`
+};
+
+const ILUS={
+  maceta:['cut','roll','fold','soil','seed','plant'],
+  ballena:['bowl','balloon','strips','whale','dry','paint'],
+  artesanal:['tear','soak','blender','frame','sponge','drysheet'],
+  libreta:['select','stack','covers','punch','tie','decorate'],
+  origami:['square','diag','triangle','crane','crane2'],
+  organizador:['measure','arrange','glue','wrap','organizer'],
+  bolsa:['foldsheet','bagbottom','bag','bagholes','baghandle'],
+  reciclar:['clean','staples','flatten','sort','truck']
+};
+
+let papelSel = null, proySel = null;
+const $ = s => document.querySelector(s);
+
+function showTab(id){
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-selected', t.getAttribute('aria-controls')===id));
+  document.querySelectorAll('[role=tabpanel]').forEach(p=>p.hidden = p.id!==id);
+  window.scrollTo({top:0});
+}
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>showTab(t.getAttribute('aria-controls'))));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.go)));
+
+function renderPapeles(){
+  $('#paperChips').innerHTML = PAPELES.map(p=>`<button class="chip" aria-pressed="${papelSel===p.id}" data-p="${p.id}"><span class="ic">${p.ic}</span>${p.nombre}</button>`).join('');
+  document.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>{
+    papelSel=b.dataset.p;
+    if(proySel && !PROYECTOS[proySel].papeles.includes(papelSel)) proySel=null;
+    renderPapeles(); renderProyectos();
+  }));
+}
+function renderProyectos(){
+  if(!papelSel){$('#projChips').innerHTML='';return;}
+  $('#projHint').textContent='Estas son las opciones que funcionan con ese papel.';
+  const ids = Object.keys(PROYECTOS).filter(k=>PROYECTOS[k].papeles.includes(papelSel));
+  $('#projChips').innerHTML = ids.map(k=>`<button class="chip" aria-pressed="${proySel===k}" data-k="${k}"><span class="ic">${PROYECTOS[k].ic}</span>${PROYECTOS[k].nombre}</button>`).join('');
+  document.querySelectorAll('[data-k]').forEach(b=>b.addEventListener('click',()=>{proySel=b.dataset.k;renderProyectos();}));
+  $('#goBtn').disabled = !proySel;
+}
+$('#goBtn').addEventListener('click',()=>{renderInfografia();showTab('pasos');});
+
+function renderInfografia(){
+  const p = PROYECTOS[proySel];
+  const papel = PAPELES.find(x=>x.id===papelSel);
+  $('#infografia').innerHTML = `
+    <div class="info-head">
+      <div class="big">${p.ic}</div>
+      <h2>${p.nombre}</h2>
+      <p>${p.desc}</p>
+      <div class="facts">
+        <span class="fact">${papel.ic} ${papel.nombre}</span>
+        <span class="fact">⏱️ ${p.tiempo}</span>
+        <span class="fact">⭐ ${p.nivel}</span>
+      </div>
+    </div>
+    <div class="box"><h3>Necesitas</h3><ul class="mats">${p.mats.map(m=>`<li>${m}</li>`).join('')}</ul></div>
+    <ol class="steps">${p.pasos.map((st,i)=>`
+      <li class="step">
+        <svg class="ill" viewBox="0 0 200 120" role="img" aria-label="Ilustración: ${st[1]}">${ILL[ILUS[proySel][i]]||''}</svg>
+        <div class="step-body"><span class="num">${i+1}</span><b>${st[1]}</b><p>${st[2]}</p></div>
+      </li>`).join('')}
+    </ol>
+    <div class="box tip"><h3>Consejo de la nutria 🦦</h3><p style="margin:0">${p.tip}</p></div>
+    <button class="again" data-go="papel">Elegir otro proyecto</button>`;
+  $('#infografia [data-go]').addEventListener('click',()=>showTab('papel'));
+}
+
+renderPapeles();
+</script>
+</body>
+</html>
